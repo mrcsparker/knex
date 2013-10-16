@@ -74,6 +74,7 @@ _.extend(Sqlite3Client.prototype, base.protoProps, {
 
   getRawConnection: function(callback) {
     var client = new sqlite3.Database(this.connectionSettings.filename, function(err) {
+      client.run('PRAGMA foreign_keys=on');
       callback(err, client);
     });
   },
